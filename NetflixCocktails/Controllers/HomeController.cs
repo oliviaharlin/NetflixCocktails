@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NetflixCocktails.Models;
 
+//TESTKOMMENTAR AV OLIVIA
 namespace NetflixCocktails.Controllers
 {
     public class HomeController : Controller
