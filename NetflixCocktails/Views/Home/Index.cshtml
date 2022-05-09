@@ -1,8 +1,83 @@
-﻿@{
+﻿@model NetflixCocktails.Models.Cocktail
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <br />
+    <br />
+    <input type="button" value="Randomize" class="btn btn-info" onClick="window.location.reload();" />
+    <br />
+    <br />
+
+    <h1>@Html.DisplayFor(model => model.strDrink)</h1>
+    <br />
+
+
 </div>
+
+<div style="display: grid; grid-template-columns: 1fr 1.5fr;">
+    <img src="@Html.Raw(Model.strDrinkThumb)" alt="a description of the image" style="border-radius: 50%; width: 80%; margin-left: 10%">
+
+    <div style="padding: 30px">
+        <h6><span style="font-weight:bold">Glass:</span> @Html.DisplayFor(modelItem => Model.strGlass)</h6>
+        <br />
+        <h6 style="font-weight: bold;">You need:</h6>
+        @foreach (var item in Model.ingredientList)
+        {
+            @Html.DisplayFor(modelItem => item)<br />
+        }
+
+        <br />
+        <h6 style="font-weight: bold;">Instructions:</h6>
+        @Html.DisplayFor(modelItem => Model.strInstructions)
+    </div>
+</div>
+<br />
+<br />
+
+<table class="table">
+    <tbody>
+
+        <tr>
+            <th>
+                Category:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.strCategory)
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>
+                Alcoholic:
+            </th>
+            <td>
+                @{ if (Model.strAlcoholic == "Alcoholic")
+                    {
+                        string s = "Yes";
+                        ViewBag.alco = s;
+                    }
+                    else
+                    {
+                        string s = "No";
+                        ViewBag.alco = s;
+}
+
+                }
+
+                @ViewBag.alco
+
+
+            </td>
+
+        </tr>
+
+    
+
+    </tbody>
+</table>
