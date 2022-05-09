@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using NetflixCocktails.Models;
 
 //TESTKOMMENTAR AV OLIVIA
+//LISA TESTAR
 namespace NetflixCocktails.Controllers
 {
     public class HomeController : Controller
