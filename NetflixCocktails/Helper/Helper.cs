@@ -23,6 +23,26 @@ namespace NetflixCocktails.Helper
                 }
             }
 
+
+            public class MovieAPI
+            {
+
+                public HttpClient Initial()
+                {
+                    var client = new HttpClient();
+
+                    string server = "https://k2maan-moviehut.herokuapp.com";
+                    string relativePath = "api/random";
+
+                    Uri serverUri = new Uri(server);
+                    Uri relativeUri = new Uri(relativePath, UriKind.Relative);
+                    Uri fullUri = new Uri(serverUri, relativeUri);
+
+                    client.BaseAddress = fullUri;
+                    return client;
+                }
+            }
+
     }
     
 }

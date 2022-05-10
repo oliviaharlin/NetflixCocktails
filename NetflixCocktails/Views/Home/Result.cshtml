@@ -1,0 +1,9 @@
+﻿@model NetflixCocktails.Models.RandomMovieCocktail
+
+@{
+    ViewData["Title"] = "RESULT";
+}
+
+<h1> YOUR RANDOMIZED RESULT</h1>
+
+<p>You should drink a</p> @Html.DisplayFor(model => model.strDrink) <p> and watch </p> @Html.DisplayFor(model => model.name)
