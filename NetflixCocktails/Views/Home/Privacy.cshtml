@@ -4,10 +4,80 @@
     ViewData["Title"] = "Home Page";
 }
 
-@Html.DisplayFor(modelItem => Model.name)
-@Html.DisplayFor(modelItem => Model.releaseYear)
-@Html.DisplayFor(modelItem => Model.runtime)
-@Html.DisplayFor(modelItem => Model.genre)
-@Html.DisplayFor(modelItem => Model.imdbRating)
-@Html.DisplayFor(modelItem => Model.overview)
-@Html.DisplayFor(modelItem => Model.director)
+
+<div class="text-center">
+
+    <br />
+    <br />
+    <a class="text-info" asp-controller="Home" asp-action="Result">Randomize new combo</a>
+    <br />
+    <br />
+
+    <h1>
+        @Html.DisplayFor(modelItem => Model.name)
+    </h1>
+    <br />
+    @Html.DisplayFor(modelItem => Model.overview)
+    <br />
+    <br />
+
+</div>
+
+<table class="table">
+    <tbody>
+
+        <tr>
+            <th>
+                Genre:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.genre)
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>
+                Release year:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.releaseYear)
+
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>
+                Runtime:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.runtime)
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                Imdb rating:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.imdbRating)
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>
+                Director:
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.director)
+            </td>
+
+        </tr>
+
+  
+
+    </tbody>
+</table>
+
