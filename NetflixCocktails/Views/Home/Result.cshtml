@@ -4,6 +4,35 @@
     ViewData["Title"] = "RESULT";
 }
 
-<h1> YOUR RANDOMIZED RESULT</h1>
 
-<p>You should drink a</p> @Html.DisplayFor(model => model.strDrink) <p> and watch </p> @Html.DisplayFor(model => model.name)
+<div class="text-center" style=" margin-top: 20vh;">
+
+
+    <input type="button" value="Randomize" class="btn btn-info" onClick="window.location.reload();" />
+
+
+    <h1 style=" margin-top: 5vh;"> YOUR RANDOMIZED RESULT</h1>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 8vh;">
+
+        <div class="drink">
+            <p>You should drink a</p>
+            <h2>@Html.DisplayFor(model => model.strDrink) <p></h2>
+
+            <a class="text-info" asp-controller="Home" asp-action="Index">Read more</a>
+
+            
+        </div>
+
+        <div class="movie">
+            <p>while watching the movie</p>
+            <h2>@Html.DisplayFor(model => model.name)</h2>
+
+            <a class="text-info" asp-controller="Home" asp-action="Privacy">Read more</a>
+
+        </div>
+        
+            
+    </div>
+
+</div>

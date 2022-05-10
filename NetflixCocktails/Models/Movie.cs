@@ -32,8 +32,8 @@ namespace NetflixCocktails.Models
         [JsonProperty("overview")]
         public string overview { get; set; }
 
-        [JsonProperty("metaScore")]
-        public int metaScore{ get; set; }
+        //[JsonProperty("metaScore")]
+        //public int metaScore{ get; set; }
 
         [JsonProperty("director")]
         public string director { get; set; }

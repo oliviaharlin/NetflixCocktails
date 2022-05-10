@@ -1,4 +1,4 @@
-﻿@model NetflixCocktails.Models.Movie
+﻿@model NetflixCocktails.Models.RandomMovieCocktail
 
 @{
     ViewData["Title"] = "Home Page";
@@ -6,10 +6,8 @@
 
 @Html.DisplayFor(modelItem => Model.name)
 @Html.DisplayFor(modelItem => Model.releaseYear)
-@Html.DisplayFor(modelItem => Model.certificate)
 @Html.DisplayFor(modelItem => Model.runtime)
 @Html.DisplayFor(modelItem => Model.genre)
 @Html.DisplayFor(modelItem => Model.imdbRating)
 @Html.DisplayFor(modelItem => Model.overview)
-@Html.DisplayFor(modelItem => Model.metaScore)
 @Html.DisplayFor(modelItem => Model.director)

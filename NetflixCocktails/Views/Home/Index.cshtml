@@ -1,4 +1,4 @@
-﻿@model NetflixCocktails.Models.Cocktail
+﻿@model NetflixCocktails.Models.RandomMovieCocktail
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,7 +9,7 @@
 
     <br />
     <br />
-    <input type="button" value="Randomize" class="btn btn-info" onClick="window.location.reload();" />
+    <a class="text-info" asp-controller="Home" asp-action="Result">Go back to generator</a>
     <br />
     <br />
 

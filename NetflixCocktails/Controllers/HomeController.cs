@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NetflixCocktails.Models;
@@ -37,92 +38,13 @@ namespace NetflixCocktails.Controllers
         } */
 
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-
-           Cocktail cocktail = new Cocktail();
-
-            
-            HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync("http://www.thecocktaildb.com/api/json/v1/1/random.php");
-
-            if (res.IsSuccessStatusCode) {
-            
-
-                string responseBody = await res.Content.ReadAsStringAsync();
-
-                JObject googleSearch = JObject.Parse(responseBody);
-
-                IList<JToken> results = googleSearch["drinks"].Children().ToList();
-
-                IList<Cocktail> searchResults = new List<Cocktail>();
-                foreach (JToken result in results)
-                {
-                    Cocktail cocktail1 = result.ToObject<Cocktail>();
-                    searchResults.Add(cocktail1);
-                }
+            string s = HttpContext.Session.GetString("session");
+            var result = JsonConvert.DeserializeObject<RandomMovieCocktail>(s);
 
 
-                List<String> ingredients = new List<string>();
-                List<String> measurements = new List<string>();
-                List<String> content = new List<string>();
-                ingredients.Add(searchResults[0].strIngredient1);
-                ingredients.Add(searchResults[0].strIngredient2);
-                ingredients.Add(searchResults[0].strIngredient3);
-                ingredients.Add(searchResults[0].strIngredient4);
-                ingredients.Add(searchResults[0].strIngredient5);
-                ingredients.Add(searchResults[0].strIngredient6);
-                ingredients.Add(searchResults[0].strIngredient7);
-                ingredients.Add(searchResults[0].strIngredient8);
-                ingredients.Add(searchResults[0].strIngredient9);
-                ingredients.Add(searchResults[0].strIngredient10);
-                ingredients.Add(searchResults[0].strIngredient11);
-                ingredients.Add(searchResults[0].strIngredient12);
-                ingredients.Add(searchResults[0].strIngredient13);
-                ingredients.Add(searchResults[0].strIngredient14);
-                ingredients.Add(searchResults[0].strIngredient15);
-
-                measurements.Add(searchResults[0].strMeasure1);
-                measurements.Add(searchResults[0].strMeasure2);
-                measurements.Add(searchResults[0].strMeasure3);
-                measurements.Add(searchResults[0].strMeasure4);
-                measurements.Add(searchResults[0].strMeasure5);
-                measurements.Add(searchResults[0].strMeasure6);
-                measurements.Add(searchResults[0].strMeasure7);
-                measurements.Add(searchResults[0].strMeasure8);
-                measurements.Add(searchResults[0].strMeasure9);
-                measurements.Add(searchResults[0].strMeasure10);
-                measurements.Add(searchResults[0].strMeasure11);
-                measurements.Add(searchResults[0].strMeasure12);
-                measurements.Add(searchResults[0].strMeasure13);
-                measurements.Add(searchResults[0].strMeasure14);
-                measurements.Add(searchResults[0].strMeasure15);
-
-
-
-                for (int i=0; i<15; i++)
-                {
-                    string ingredient = ingredients[i];
-                    string measurement = measurements[i];
-                    if(ingredient != null || measurement != null)
-                    {
-                        string line = measurement + " " + ingredient;
-                        content.Add(line);
-
-                    }
-               
-                }
-
-                searchResults[0].ingredientList = content;
-
-
-                return View(searchResults[0]);
-
-            }
-
-            ViewBag.error = "null";
-
-            return View();
+            return View(result);
 
 
             
@@ -148,7 +70,7 @@ namespace NetflixCocktails.Controllers
 
             }
 
-
+        
 
 
 
@@ -251,6 +173,11 @@ namespace NetflixCocktails.Controllers
 
 
                 };
+
+                var obj = JsonConvert.SerializeObject(randomMovieCocktail);
+                HttpContext.Session.SetString("session", obj);
+
+
                 return View(randomMovieCocktail);
             }
 
@@ -259,46 +186,13 @@ namespace NetflixCocktails.Controllers
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public async Task<IActionResult> Privacy()
+        public IActionResult Privacy()
         {
-            Movie movie = new Movie();
+            string s = HttpContext.Session.GetString("session");
+            var result = JsonConvert.DeserializeObject<RandomMovieCocktail>(s);
 
 
-            HttpClient client = _api2.Initial();
-            HttpResponseMessage res = await client.GetAsync("https://k2maan-moviehut.herokuapp.com/api/random");
-
-            if (res.IsSuccessStatusCode)
-            { 
-
-                var result = res.Content.ReadAsStringAsync().Result;
-
-                movie = JsonConvert.DeserializeObject<Movie>(result);      
-
-            }
-
-            return View(movie);
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
