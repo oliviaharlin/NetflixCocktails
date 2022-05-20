@@ -87,52 +87,52 @@ namespace NetflixCocktails.Controllers
 
                 string responseBody = await res2.Content.ReadAsStringAsync();
 
-                JObject googleSearch = JObject.Parse(responseBody);
+                JObject jsonObj = JObject.Parse(responseBody);
 
-                IList<JToken> results = googleSearch["drinks"].Children().ToList();
+                IList<JToken> results = jsonObj["drinks"].Children().ToList();
 
-                IList<Cocktail> searchResults = new List<Cocktail>();
+                IList<Cocktail> objList = new List<Cocktail>();
                 foreach (JToken result in results)
                 {
                     Cocktail cocktail1 = result.ToObject<Cocktail>();
-                    searchResults.Add(cocktail1);
+                    objList.Add(cocktail1);
                 }
 
 
                 List<String> ingredients = new List<string>();
                 List<String> measurements = new List<string>();
                 List<String> content = new List<string>();
-                ingredients.Add(searchResults[0].strIngredient1);
-                ingredients.Add(searchResults[0].strIngredient2);
-                ingredients.Add(searchResults[0].strIngredient3);
-                ingredients.Add(searchResults[0].strIngredient4);
-                ingredients.Add(searchResults[0].strIngredient5);
-                ingredients.Add(searchResults[0].strIngredient6);
-                ingredients.Add(searchResults[0].strIngredient7);
-                ingredients.Add(searchResults[0].strIngredient8);
-                ingredients.Add(searchResults[0].strIngredient9);
-                ingredients.Add(searchResults[0].strIngredient10);
-                ingredients.Add(searchResults[0].strIngredient11);
-                ingredients.Add(searchResults[0].strIngredient12);
-                ingredients.Add(searchResults[0].strIngredient13);
-                ingredients.Add(searchResults[0].strIngredient14);
-                ingredients.Add(searchResults[0].strIngredient15);
+                ingredients.Add(objList[0].strIngredient1);
+                ingredients.Add(objList[0].strIngredient2);
+                ingredients.Add(objList[0].strIngredient3);
+                ingredients.Add(objList[0].strIngredient4);
+                ingredients.Add(objList[0].strIngredient5);
+                ingredients.Add(objList[0].strIngredient6);
+                ingredients.Add(objList[0].strIngredient7);
+                ingredients.Add(objList[0].strIngredient8);
+                ingredients.Add(objList[0].strIngredient9);
+                ingredients.Add(objList[0].strIngredient10);
+                ingredients.Add(objList[0].strIngredient11);
+                ingredients.Add(objList[0].strIngredient12);
+                ingredients.Add(objList[0].strIngredient13);
+                ingredients.Add(objList[0].strIngredient14);
+                ingredients.Add(objList[0].strIngredient15);
 
-                measurements.Add(searchResults[0].strMeasure1);
-                measurements.Add(searchResults[0].strMeasure2);
-                measurements.Add(searchResults[0].strMeasure3);
-                measurements.Add(searchResults[0].strMeasure4);
-                measurements.Add(searchResults[0].strMeasure5);
-                measurements.Add(searchResults[0].strMeasure6);
-                measurements.Add(searchResults[0].strMeasure7);
-                measurements.Add(searchResults[0].strMeasure8);
-                measurements.Add(searchResults[0].strMeasure9);
-                measurements.Add(searchResults[0].strMeasure10);
-                measurements.Add(searchResults[0].strMeasure11);
-                measurements.Add(searchResults[0].strMeasure12);
-                measurements.Add(searchResults[0].strMeasure13);
-                measurements.Add(searchResults[0].strMeasure14);
-                measurements.Add(searchResults[0].strMeasure15);
+                measurements.Add(objList[0].strMeasure1);
+                measurements.Add(objList[0].strMeasure2);
+                measurements.Add(objList[0].strMeasure3);
+                measurements.Add(objList[0].strMeasure4);
+                measurements.Add(objList[0].strMeasure5);
+                measurements.Add(objList[0].strMeasure6);
+                measurements.Add(objList[0].strMeasure7);
+                measurements.Add(objList[0].strMeasure8);
+                measurements.Add(objList[0].strMeasure9);
+                measurements.Add(objList[0].strMeasure10);
+                measurements.Add(objList[0].strMeasure11);
+                measurements.Add(objList[0].strMeasure12);
+                measurements.Add(objList[0].strMeasure13);
+                measurements.Add(objList[0].strMeasure14);
+                measurements.Add(objList[0].strMeasure15);
 
 
 
@@ -149,18 +149,18 @@ namespace NetflixCocktails.Controllers
 
                 }
 
-                searchResults[0].ingredientList = content;
+                objList[0].ingredientList = content;
 
 
                 RandomMovieCocktail randomMovieCocktail = new RandomMovieCocktail()
                 {
-                    ingredientList = searchResults[0].ingredientList,
-                    strDrink = searchResults[0].strDrink,
-                    strCategory = searchResults[0].strCategory,
-                    strAlcoholic = searchResults[0].strAlcoholic,
-                    strGlass = searchResults[0].strGlass,
-                    strInstructions = searchResults[0].strInstructions,
-                    strDrinkThumb = searchResults[0].strDrinkThumb,
+                    ingredientList = objList[0].ingredientList,
+                    strDrink = objList[0].strDrink,
+                    strCategory = objList[0].strCategory,
+                    strAlcoholic = objList[0].strAlcoholic,
+                    strGlass = objList[0].strGlass,
+                    strInstructions = objList[0].strInstructions,
+                    strDrinkThumb = objList[0].strDrinkThumb,
 
                     name = movie.name,
                     releaseYear = movie.releaseYear,
